@@ -1,0 +1,88 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
+  font-weight: 100;
+  line-height: 28.8px;
+  color: black;
+  margin-bottom: 5px;
+}
+
+h2,
+h4 {
+  font-size: 12px;
+  text-align: center;
+  font-weight: 100;
+  line-height: 28.8px;
+  color: black;
+  margin-bottom: 15px;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+li {
+  font-size: 12px;
+  font-weight: 100;
+  line-height: 19px;
+  margin-right: 10px;
+}
+
+li:first letter {
+  text-transform: capitalize;
+}
+
+small {
+  font-size: 14px;
+  text-align: center;
+  display: block;
+  margin: 30px auto;
+}
+
+.weather-app {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.d-flex.weather-temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-temperature strong {
+  font-size: 64px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.weather-temperature .units {
+  position: relative;
+  font-size: 16px;
+  top: -30px;
+}
+
+.weather-temperature .active {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+
+.weather-temperature .active:hover {
+  text-decoration: none;
+}
