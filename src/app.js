@@ -1,7 +1,7 @@
-let now = new Date();
-let h2 = document.querySelector("h2");
+function formatDate(timestamp) {
+  let now = new Date();
+}
 let hours = now.getHours();
-
 if (hours < 10) {
   hours = `0${hours}`;
 }
@@ -44,6 +44,7 @@ let year = now.getFullYear();
 
 h2.innerHTML = `${day} ${month} ${date}, ${year} ${hours}:${minutes}`;
 
+let h2 = document.querySelector("h2");
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
