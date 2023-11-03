@@ -39,12 +39,61 @@ let months = [
 
 let day = days[now.getDay()];
 let month = months[now.getMonth()];
-let date = now.getDate();
 let year = now.getFullYear();
 
-h2.innerHTML = `${day} ${month} ${date}, ${year} ${hours}:${minutes}`;
-
+return `${day}${now.getDate()}${month}${year}${hours}:${minutes}`;
 let h2 = document.querySelector("h2");
+h2.textContent = formatDate(Date.now());
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[days];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class= "row">`;
+  forecast.forEach(function (forecastDay, index){
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+          <div class="col-2">
+                <div class ="weather-forecast-date"> 
+               ${formatDay(forecastDay.time)}
+               </div>
+                <img src="${forecastDay.condition.icon_url}" 
+                alt="" 
+                width="35">
+            <div class="weather-forecast-temperature"> 
+              <span class="weather-forecast-temperature-max">${Math.round(
+                forecastDay.temperature.maximum
+              )}°</span>
+               <span class="weather-forecast-temperature-min">${Math.round(
+                 forecastDay.temperature.minimum
+               )}°</span>
+             </div>
+              </div>
+        `;
+    }
+  });
+  forecastHTML = forecastHTML + ´</div>´;
+  forecastElement.innerHTML= forecastHTML;
+  
+}
+
+function getForecast(coordinates) {
+  let key = "ac7025b9t373ca47f5c0o9fab542c657";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -65,12 +114,7 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.condition.description);
 }
 
-function search(value) {
-  let key = "ac7025b9t373ca47f5c0o9fab542c657";
-  let query = `${value}`;
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${query}&key=${key}&units=metric`;
-  axios.get(apiUrl).then(displayTemperature);
-}
+
 
 function handleSubmit(event) {
   event.preventDefault();
