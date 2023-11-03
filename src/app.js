@@ -100,11 +100,11 @@ function displayTemperature(response) {
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
   celsiusTemperature = response.data.temperature.current;
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-  cityElement.innerHTML = response.data.city;
-  descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = Math.round(response.data.temperature.humidity);
-  windElement.innerHTML = Math.round(response.data.wind.speed);
+  temperatureElement.textContent = Math.round(celsiusTemperature);
+  cityElement.textContent = response.data.city;
+  descriptionElement.textContent = response.data.condition.description;
+  humidityElement.textContent = Math.round(response.data.temperature.humidity);
+  windElement.textContent = Math.round(response.data.wind.speed);
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
