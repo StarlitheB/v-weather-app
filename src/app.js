@@ -40,7 +40,7 @@ function formatDate(timestamp) {
   let month = months[now.getMonth()];
   let year = now.getFullYear();
 
-  return `${day} ${now.getDate()} ${month} ${year}, ${hours}:${minutes}`;
+  return `${day}${now.getDate()}${month}${year}${hours}:${minutes}`;
 }
 let h2 = document.querySelector("h2");
 h2.textContent = formatDate(Date.now());
