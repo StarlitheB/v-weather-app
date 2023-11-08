@@ -1,47 +1,47 @@
 function formatDate(timestamp) {
   let now = new Date();
+  let hours = now.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+
+  let minutes = now.getMinutes();
+
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let day = days[now.getDay()];
+  let month = months[now.getMonth()];
+  let year = now.getFullYear();
+
+  return `${day}${now.getDate()}${month}${year}${hours}:${minutes}`;
 }
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-
-let minutes = now.getMinutes();
-
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-let day = days[now.getDay()];
-let month = months[now.getMonth()];
-let year = now.getFullYear();
-
-return `${day}${now.getDate()}${month}${year}${hours}:${minutes}`;
 let h2 = document.querySelector("h2");
 h2.textContent = formatDate(Date.now());
 
@@ -49,7 +49,7 @@ function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[days];
+  return days[day];
 }
 
 function displayForecast(response) {
@@ -88,7 +88,7 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let key = "ac7025b9t373ca47f5c0o9fab542c657";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -110,9 +110,8 @@ function displayTemperature(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+  getForecast(response.data.coordinates);
 }
-
-getForecast(response.data.coordinates);
 
 function search(value) {
   let key = "ac7025b9t373ca47f5c0o9fab542c657";
@@ -122,6 +121,7 @@ function search(value) {
 }
 
 function handleSubmit(event) {
+  console.log({ event });
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
