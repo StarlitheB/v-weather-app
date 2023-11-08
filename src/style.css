@@ -5,7 +5,7 @@ body {
 img {
   display: block;
   margin: 0 auto;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 h1 {
@@ -47,7 +47,7 @@ li:first letter {
 .weather-app {
   max-width: 600px;
   margin: 30px auto;
-  padding: 20px;
+  padding: 25px;
   border: 1px solid black;
   border-radius: 20px;
   background-image: linear-gradient(
@@ -93,4 +93,10 @@ li:first letter {
   text-align: center;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.weather-forecast {
+  align-items: center;
+  display: block;
+  margin: 0 auto;
 }
