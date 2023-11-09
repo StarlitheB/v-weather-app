@@ -99,6 +99,8 @@ function displayTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
+  let h2 = document.querySelector("h2");
+  h2.textContent = formatDate(response.data.time * 1000);
   celsiusTemperature = response.data.temperature.current;
   temperatureElement.textContent = Math.round(celsiusTemperature);
   cityElement.textContent = response.data.city;

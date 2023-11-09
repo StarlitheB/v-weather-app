@@ -100,3 +100,12 @@ li:first letter {
   display: block;
   margin: 0 auto;
 }
+.weather-forecast-temperature {
+  text-align: center;
+}
+.weather-forecast-date {
+  text-align: center;
+}
+.weather-forecast-temperature-max {
+  font-weight: bold;
+}
