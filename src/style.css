@@ -110,3 +110,7 @@ li:first letter {
 .weather-forecast-temperature-max {
   font-weight: bold;
 }
+
+.weather-forecast {
+  font-size: larger;
+}
