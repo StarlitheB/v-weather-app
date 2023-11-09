@@ -52,6 +52,7 @@ li:first letter {
   border-radius: 20px;
   background-image: linear-gradient(
     to right top,
+    #eab9da,
     #c687b1,
     #528ec3,
     rgb(198, 220, 237),
